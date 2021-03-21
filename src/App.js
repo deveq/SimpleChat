@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { StatusBar, Image } from 'react-native';
+import { StatusBar, Image, Text } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font'
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';
 import Navigation from './navigations';
 import { images } from './utils/images';
-
+ 
 const cacheImages = image => {
     return image.map(image => {
         if (typeof image === 'string') {

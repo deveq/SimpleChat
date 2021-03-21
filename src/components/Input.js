@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import PropTypes from "prop-types";
 
 const Container = styled.View`
@@ -30,12 +30,10 @@ const StyledTextInput = styled.TextInput.attrs(({ theme }) => ({
 // forwardRef( (props, ref) => {} );
 const Input = forwardRef(
   (
-    { label, value, onChangeText, onSubmitEditing, onBlur, placeholder, isPassword, returnKeyType, maxLength, theme },
+    { label, value, onChangeText, onSubmitEditing, onBlur, placeholder, isPassword, returnKeyType, maxLength },
     ref
   ) => {
     const [isFocused, setIsFocused] = useState(false);
-
-    console.log(theme, "aaa");
 
     return (
       <Container>
