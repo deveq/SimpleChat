@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import styled from 'styled-components/native';
 import { Image, Input, Button } from '../components';
 import { images } from '../utils/images';
@@ -7,6 +7,7 @@ import { validateEmail, removeWhitespace } from '../utils/common';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Alert } from 'react-native';
 import { login } from '../utils/firebase';
+import { ProgressContext, UserContext } from '../contexts';
 
 
 const Container = styled.View`
@@ -29,6 +30,9 @@ const ErrorText = styled.Text`
 `;
 
 const Login = ({navigation}) => {
+
+    const { spinner } = useContext(ProgressContext);
+    const { dispatch } = useContext(UserContext);
 
     const insets = useSafeAreaInsets();
 
@@ -57,10 +61,13 @@ const Login = ({navigation}) => {
 
     const _handleLoginButtonPress = async () => {
         try {
+            spinner.start();
             const user = await login({email, password});
-            Alert.alert('Login Success', user.email);
+            dispatch(user);
         } catch (e) {
             Alert.alert('Login Error', e.message);
+        } finally {
+            spinner.stop();
         }
     };
 
