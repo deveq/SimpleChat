@@ -54,7 +54,7 @@ const Profile = () => {
                 showButton
                 rounded
             />
-            <Input lable='Name' value={user.name} disabled/>
+            <Input label='Name' value={user.name} disabled/>
             <Input label='Email' value={user.email} disabled/>
             <Button
                 title='logout'

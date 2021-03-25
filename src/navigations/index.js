@@ -10,6 +10,9 @@ const Navigation = () => {
     const { user } = useContext(UserContext);
     return (
         <NavigationContainer>
+            {/* MainStack은 로그인 된 경우에만 보이는 화면,
+                AuthStack은 로그인되어있지 않을 경우에만 보이는 화면.
+            */}
             { user?.uid && user?.email ? <MainStack/> : <AuthStack/>}
             { inProgress && <Spinner /> }
         </NavigationContainer>
